@@ -1,0 +1,86 @@
+// Сброс клиентских стилей
+@use "scss-reset" as *;
+@use "__variables" as *;
+
+// Стили
+* {
+  color: myColor("white");
+  overflow-wrap: break-word;
+}
+
+html {
+  font-size: 10px;
+  font-family: "GolosText", Arial, Helvetica, sans-serif;
+  background-color: myColor("black");
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page_wrapper {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.container {
+  @include container;
+}
+
+.svg_container,
+.ui_container {
+  display: block;
+  width: max-content;
+}
+
+h1.heading {
+  font-size: 3.1rem;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1;
+  font-family: "DrukTextWideCyTT", Arial, Helvetica, sans-serif;
+}
+
+h2.heading {
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  line-height: 1.25;
+  font-family: "DrukTextWideCyTT", Arial, Helvetica, sans-serif;
+}
+
+.top-section {
+  justify-content: center;
+}
+
+.animated-section {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 1.2s ease;
+}
+
+.animated-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.block {
+  transition: all 0.6s ease-out;
+}
+
+.block.left {
+  transform: translateX(-100px);
+  opacity: 0;
+}
+
+.block.right {
+  transform: translateX(100px);
+  opacity: 0;
+}
+
+.block.show {
+  transform: translateX(0);
+  opacity: 1;
+}

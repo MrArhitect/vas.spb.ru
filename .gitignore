@@ -1,0 +1,10 @@
+logs
+*.log
+
+node_modules
+dist
+*.local
+*.pdf
+
+.vscode/*
+!.vscode/extensions.json

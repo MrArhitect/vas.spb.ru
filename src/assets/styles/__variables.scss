@@ -1,0 +1,80 @@
+// Подключение зависимостей
+@use "sass:map";
+
+$colors: (
+  "white": #ffffff,
+  "black": #000000,
+  "grey": #525252,
+  "blue": #00a6ff,
+);
+
+@function myColor($key) {
+  @if map.has-key($colors, $key) {
+    @return map.get($colors, $key);
+  }
+
+  @error "Цвета '#{$key}' не существует!";
+}
+
+@font-face {
+  font-family: "DrukTextWideCyTT";
+  src:
+    url("@/assets/fonts/DrukWideCyTTBold/DrukWideCyTTBold.woff2") format("woff2"),
+    url("@/assets/fonts/DrukWideCyTTBold/DrukWideCyTTBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GolosText";
+  src: url("@/assets/fonts/GolosText/GolosTextVariable.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+$breakpoints: (
+  "mobile": 680px,
+  "tablet": 980px,
+  "laptop": 1220px,
+  "desktop": 1360px,
+);
+
+@mixin from($breakpoint) {
+  $width: map.get($breakpoints, $breakpoint);
+
+  @if $width {
+    @media (min-width: $width) {
+      @content;
+    }
+  } @else {
+    @error "Брейкпоинтa '#{$breakpoint}' не существует!";
+  }
+}
+
+@mixin container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 20px;
+
+  @include from(mobile) {
+    max-width: map.get($breakpoints, "mobile");
+    padding: 0px 10px;
+  }
+
+  @include from(tablet) {
+    max-width: map.get($breakpoints, "tablet");
+    padding: 0px 10px;
+  }
+
+  @include from(laptop) {
+    max-width: map.get($breakpoints, "laptop");
+    padding: 0px 10px;
+  }
+
+  @include from(desktop) {
+    max-width: map.get($breakpoints, "desktop");
+    padding: 0px 10px;
+  }
+}
